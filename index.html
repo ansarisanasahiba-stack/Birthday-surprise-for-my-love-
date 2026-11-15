@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love • 16 November</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg-dark: #070410;
+    --bg-card: rgba(20, 12, 40, 0.72);
+    --primary: #ff2a85;
+    --secondary: #8a2be2;
+    --gold: #ffd700;
+    --cyan: #00f2fe;
+    --text-light: #fdf8ff;
+    --text-muted: #c9b8e6;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Canvas Background */
+  #starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Entrance Overlay */
+  #entrance {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1b0a36 0%, #05020b 100%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s ease, visibility 1s ease;
+  }
+
+  #entrance.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .entrance-badge {
+    padding: 8px 22px;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 50px;
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background: rgba(255, 215, 0, 0.08);
+    animation: pulseGlow 2.5s infinite;
+  }
+
+  .entrance-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    background: linear-gradient(135deg, #fff 0%, #ffd700 45%, #ff2a85 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    line-height: 1.2;
+  }
+
+  .entrance-sub {
+    color: var(--text-muted);
+    max-width: 560px;
+    font-size: 1.05rem;
+    margin-bottom: 35px;
+    line-height: 1.6;
+  }
+
+  .btn-open {
+    padding: 16px 42px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 42, 133, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  .btn-open:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 0 45px rgba(255, 42, 133, 0.9);
+  }
+
+  /* Floating Navbar */
+  nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(15, 8, 32, 0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 10px 28px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: var(--gold);
+  }
+
+  .music-btn {
+    background: rgba(255, 42, 133, 0.2);
+    border: 1px solid var(--primary);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .music-btn:hover {
+    background: var(--primary);
+  }
+
+  /* Main Container */
+  main {
+    position: relative;
+    z-index: 2;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 100px 0;
+  }
+
+  .section-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .section-heading {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ffffff, #f5c6ec, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .hero-pill {
+    background: rgba(255, 42, 133, 0.15);
+    border: 1px solid rgba(255, 42, 133, 0.45);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 0.92rem;
+    color: #ff9ec7;
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.12;
+    margin-bottom: 16px;
+    text-shadow: 0 10px 35px rgba(255, 42, 133, 0.35);
+  }
+
+  .hero h1 span {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3.4rem, 7vw, 6.2rem);
+    background: linear-gradient(135deg, #ffd700, #ff2a85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+  }
+
+  .hero p {
+    max-width: 680px;
+    color: var(--text-muted);
+    font-size: 1.12rem;
+    line-height: 1.75;
+    margin-bottom: 42px;
+  }
+
+  /* Dual Live Counters */
+  .timers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 26px;
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .timer-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 28px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .timer-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 215, 0, 0.45);
+  }
+
+  .timer-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .timer-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .t-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 12px 14px;
+    min-width: 68px;
+  }
+
+  .t-box span {
+    display: block;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .t-box small {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Cosmic Constellation Showcase (No Photos Required) */
+  .constellation-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 32px;
+    padding: 48px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  }
+
+  .orbit-stage {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 215, 0, 0.35);
+    animation: spinSlow 24s linear infinite;
+  }
+
+  .orbit-ring.r1 { width: 310px; height: 310px; }
+  .orbit-ring.r2 { width: 225px; height: 225px; border-color: rgba(255, 42, 133, 0.45); animation-direction: reverse; animation-duration: 16s; }
+  .orbit-ring.r3 { width: 140px; height: 140px; border-color: rgba(0, 242, 254, 0.4); animation-duration: 10s; }
+
+  .orbit-dot {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+  }
+
+  .orbit-ring.r2 .orbit-dot { background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+  .orbit-ring.r3 .orbit-dot { background: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+
+  .core-heart {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff2a85, #8a2be2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(255, 42, 133, 0.8);
+    animation: heartbeat 1.8s infinite;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .core-heart span {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .core-heart small {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .story-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .highlight-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 16px 20px;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .highlight-item h4 {
+    color: var(--gold);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .highlight-item p {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  /* 3D Flip Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .flip-card {
+    height: 290px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-inner,
+  .flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-front, .flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .flip-front {
+    background: linear-gradient(145deg, rgba(30, 15, 60, 0.85), rgba(14, 7, 30, 0.9));
+  }
+
+  .flip-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .flip-front h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .flip-front span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .flip-back {
+    background: linear-gradient(135deg, #3b0d54, #801348);
+    transform: rotateY(180deg);
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+
+  /* Love Letter */
+  .letter-box {
+    background: linear-gradient(160deg, rgba(28, 14, 52, 0.88), rgba(12, 6, 26, 0.94));
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 30px;
+    padding: 54px;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+  }
+
+  .letter-box::before {
+    content: "❝";
+    position: absolute;
+    top: 20px;
+    left: 34px;
+    font-size: 5rem;
+    color: rgba(255, 215, 0, 0.15);
+    font-family: serif;
+  }
+
+  .letter-content {
+    font-size: 1.12rem;
+    line-height: 1.9;
+    color: #f3eaff;
+  }
+
+  .letter-content p {
+    margin-bottom: 20px;
+  }
+
+  .letter-sign {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-top: 24px;
+  }
+
+  /* Interactive Birthday Cake */
+  .cake-section {
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 32px;
+    padding: 60px 24px;
+  }
+
+  .cake-wrapper {
+    position: relative;
+    width: 240px;
+    height: 210px;
+    margin: 40px auto 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .cake-plate {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 220px;
+    height: 14px;
+    background: #e2d9f3;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  }
+
+  .cake-bottom {
+    position: absolute;
+    bottom: 14px;
+    left: 25px;
+    width: 190px;
+    height: 65px;
+    background: linear-gradient(90deg, #ff2a85, #ff5ea3, #ff2a85);
+    border-radius: 14px 14px 6px 6px;
+  }
+
+  .cake-top {
+    position: absolute;
+    bottom: 79px;
+    left: 45px;
+    width: 150px;
+    height: 55px;
+    background: linear-gradient(90deg, #8a2be2, #a855f7, #8a2be2);
+    border-radius: 14px 14px 4px 4px;
+  }
+
+  .icing {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 16px;
+    background: #fff5fb;
+    border-radius: 14px 14px 8px 8px;
+  }
+
+  .candle {
+    position: absolute;
+    bottom: 134px;
+    left: 113px;
+    width: 14px;
+    height: 44px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ffd700 5px, #ffd700 10px);
+    border-radius: 4px;
+  }
+
+  .flame {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 24px;
+    background: radial-gradient(circle at bottom, #fff 10%, #ffd700 50%, #ff4500 95%);
+    border-radius: 50% 50% 35% 35%;
+    box-shadow: 0 0 22px #ffd700, 0 0 40px #ff4500;
+    animation: flicker 0.25s infinite alternate;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .flame.blown {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+
+  .wish-status {
+    font-size: 1.15rem;
+    color: var(--gold);
+    font-weight: 500;
+    min-height: 30px;
+  }
+
+  /* Marriage Proposal Finale */
+  .proposal-card {
+    text-align: center;
+    background: radial-gradient(circle at top, rgba(255, 42, 133, 0.22), rgba(15, 8, 34, 0.92));
+    border: 2px solid rgba(255, 215, 0, 0.45);
+    border-radius: 34px;
+    padding: 70px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ring-icon {
+    font-size: 4.5rem;
+    display: inline-block;
+    animation: floatY 3s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+
+  .proposal-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 38px;
+    min-height: 70px;
+    position: relative;
+  }
+
+  .btn-yes {
+    padding: 18px 46px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #160826;
+    cursor: pointer;
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.65);
+    transition: transform 0.25s ease;
+  }
+
+  .btn-yes:hover {
+    transform: scale(1.08);
+  }
+
+  .btn-no {
+    padding: 14px 30px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  /* Celebration Modal */
+  #celebrateModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 2, 14, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  #celebrateModal.active {
+    display: flex;
+  }
+
+  .modal-inner {
+    background: linear-gradient(145deg, #240c47, #4a0e38);
+    border: 2px solid var(--gold);
+    border-radius: 30px;
+    max-width: 560px;
+    padding: 46px 34px;
+    text-align: center;
+    box-shadow: 0 0 70px rgba(255, 42, 133, 0.7);
+    animation: popIn 0.5s ease;
+  }
+
+  .modal-inner h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.3rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .modal-inner p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  @keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+    100% { transform: translateX(-50%) scale(1.08) rotate(2deg); }
+  }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 12px rgba(255, 215, 0, 0.25); }
+    50% { box-shadow: 0 0 26px rgba(255, 215, 0, 0.65); }
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.75); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @media (max-width: 820px) {
+    .constellation-wrap { grid-template-columns: 1fr; padding: 32px 20px; }
+    .letter-box { padding: 32px 22px; }
+    nav { gap: 14px; padding: 8px 18px; }
+    nav a { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Entrance Gate -->
+<div id="entrance">
+  <div class="entrance-badge">16 November • Birthday Special</div>
+  <h1 class="entrance-title">Happy Birthday, <span class="her-name-text">My Love</span></h1>
+  <p class="entrance-sub">
+    From our magical first meeting at the Science Exhibition on 17 October at 5:30 PM to celebrating your special day today—Altamas made this universe just for you.
+  </p>
+  <button class="btn-open" onclick="enterWebsite()">Open Your Birthday Surprise ✨</button>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#story">Our Story</a>
+  <a href="#reasons">Why You</a>
+  <a href="#letter">Letter</a>
+  <a href="#cake">Wish</a>
+  <a href="#forever">Forever</a>
+  <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵 Play Music</button>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-pill">🎂 Celebrating 16 November • Crafted with Love by Altamas</div>
+    <h1>Happy Birthday <span class="her-name-text">My Love</span></h1>
+    <p>
+      Ever since <strong>17 October at 5:30 PM</strong> at the Science Exhibition, my world found its brightest star. Today is all about celebrating your smile, your heart, and the lifetime we are going to build together.
+    </p>
+
+    <div class="timers-grid">
+      <!-- Birthday Timer -->
+      <div class="timer-card">
+        <div class="timer-label" id="bdayLabel">🎂 16 November Birthday Countdown</div>
+        <div class="timer-boxes" id="bdayBoxes">
+          <div class="t-box"><span id="bHours">00</span><small>Hours</small></div>
+          <div class="t-box"><span id="bMins">00</span><small>Mins</small></div>
+          <div class="t-box"><span id="bSecs">00</span><small>Secs</small></div>
+        </div>
+      </div>
+
+      <!-- Since Meeting Timer -->
+      <div class="timer-card">
+        <div class="timer-label">💫 Since 17 Oct, 5:30 PM (Science Exhibition)</div>
+        <div class="timer-boxes">
+          <div class="t-box"><span id="mDays">00</span><small>Days</small></div>
+          <div class="t-box"><span id="mHours">00</span><small>Hours</small></div>
+          <div class="t-box"><span id="mMins">00</span><small>Mins</small></div>
+          <div class="t-box"><span id="mSecs">00</span><small>Secs</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cosmic Story Section (No Photos Needed) -->
+  <section id="story">
+    <span class="section-tag">Written in the Stars</span>
+    <h2 class="section-heading">Our Cosmic Timeline</h2>
+
+    <div class="constellation-wrap">
+      <div class="orbit-stage">
+        <div class="orbit-ring r1"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring r2"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring r3"><div class="orbit-dot"></div></div>
+        <div class="core-heart">
+          <span>❤️</span>
+          <small>17 OCT • 5:30</small>
+        </div>
+      </div>
+
+      <div class="story-highlights">
+        <div class="highlight-item">
+          <h4>🔬 17 October • 5:30 PM — Science Exhibition</h4>
+          <p>Out of every project and every person in that hall, meeting you at 5:30 PM became the greatest discovery of Altamas's life.</p>
+        </div>
+        <div class="highlight-item">
+          <h4>🎂 16 November — The Queen's Birthday</h4>
+          <p>The day the world was blessed with someone kind, radiant, and truly unforgettable. Every moment since meeting you feels like a gift.</p>
+        </div>
+        <div class="highlight-item">
+          <h4>💍 Our Future — Marriage & Forever</h4>
+          <p>This isn't just a birthday wish—it's a promise. I want to celebrate every 16 November by your side as your partner for life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reasons Why I Love You -->
+  <section id="reasons">
+    <span class="section-tag">Tap or Hover Each Card</span>
+    <h2 class="section-heading">Why You Mean Everything to Me</h2>
+
+    <div class="cards-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon">✨</div>
+            <h3>That 5:30 PM Magic</h3>
+            <span>Hover or click to reveal</span>
+          </div>
+          <div class="flip-back">
+            From the exact second I saw you at 5:30 PM on 17 October, nothing else in the Science Exhibition mattered anymore.
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon">🌸</div>
+            <h3>Your Pure Smile</h3>
+            <span>Hover or click to reveal</span>
+          </div>
+          <div class="flip-back">
+            Your smile turns ordinary days into my favorite memories and makes me want to be the best version of myself.
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon">🌙</div>
+            <h3>My Peace & Home</h3>
+            <span>Hover or click to reveal</span>
+          </div>
+          <div class="flip-back">
+            Talking to you feels effortless, warm, and safe—like finding the home my heart was searching for all along.
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon">👑</div>
+            <h3>My Future Wife</h3>
+            <span>Hover or click to reveal</span>
+          </div>
+          <div class="flip-back">
+            When I picture my future, every dream begins and ends with holding your hand and calling you my wife.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Birthday Love Letter -->
+  <section id="letter">
+    <span class="section-tag">From My Heart</span>
+    <h2 class="section-heading">A Birthday Letter for You</h2>
+
+    <div class="letter-box">
+      <div class="letter-content">
+        <p>Dearest <strong class="her-name-text" style="color: var(--gold);">My Love</strong>,</p>
+        <p>
+          Happy Birthday! Today, <strong>16 November</strong>, is one of the most special days of the year because it is the day you came into this world.
+        </p>
+        <p>
+          I still replay <strong>17 October at 5:30 PM</strong> at the Science Exhibition in my mind like my favorite movie. Who knew that a single moment at 5:30 PM would completely change my life and give me the person I want to spend forever with?
+        </p>
+        <p>
+          You don't need a picture frame on this page because your face, your voice, and your kindness live permanently in my heart. On your birthday, I pray that all your dreams come true—and my biggest dream is to marry you, stand beside you through every season, and celebrate a hundred more birthdays together.
+        </p>
+        <div class="letter-sign">Forever Yours, Altamas ❤️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Birthday Cake -->
+  <section id="cake">
+    <div class="cake-section">
+      <span class="section-tag">Make a Birthday Wish</span>
+      <h2 class="section-heading">Blow Out Your Candle</h2>
+      <p style="color: var(--text-muted);">Close your eyes, make a wish for 16 November, and click on the cake!</p>
+
+      <div class="cake-wrapper" onclick="blowCandle()">
+        <div class="candle"><div class="flame" id="candleFlame"></div></div>
+        <div class="cake-top"><div class="icing"></div></div>
+        <div class="cake-bottom"><div class="icing"></div></div>
+        <div class="cake-plate"></div>
+      </div>
+
+      <div class="wish-status" id="wishStatus">✨ Click the cake to blow out the flame ✨</div>
+    </div>
+  </section>
+
+  <!-- Marriage Proposal Finale -->
+  <section id="forever">
+    <div class="proposal-card">
+      <div class="ring-icon">💍</div>
+      <span class="section-tag">One Serious Question</span>
+      <h2 class="section-heading">Will You Marry Me & Be Mine Forever?</h2>
+      <p style="max-width: 620px; margin: 0 auto; color: var(--text-muted); font-size: 1.08rem; line-height: 1.7;">
+        From 17 October at 5:30 PM to your birthday on 16 November, every second has proven one truth to Altamas: I want to spend the rest of my life with you.
+      </p>
+
+      <div class="proposal-btns">
+        <button class="btn-yes" onclick="sayYes()">YES, FOREVER! ❤️</button>
+        <button class="btn-no" id="noBtn" onmouseover="dodgeButton()" onclick="dodgeButton()">Let me think...</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Made with endless love by <strong>Altamas</strong> • Celebrating <strong>16 November</strong> • Forever starts from 17 Oct, 5:30 PM
+</footer>
+
+<!-- Celebration Modal -->
+<div id="celebrateModal">
+  <div class="modal-inner">
+    <h2>She Said YES! 💍❤️</h2>
+    <p>
+      Happy Birthday once again, <strong class="her-name-text">My Love</strong>! You just made Altamas the happiest person alive. Here is to our 16 November celebration and our forever together!
+    </p>
+    <button class="btn-open" onclick="closeModal()">Celebrate Together ✨</button>
+  </div>
+</div>
+
+<script>
+  // Optional: Replace "My Love" with her real name if you want
+  const HER_NAME = "My Love";
+  document.querySelectorAll(".her-name-text").forEach(el => el.textContent = HER_NAME);
+
+  // Starfield & Heart Particles Canvas
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+  let w, h, stars = [], confetti = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  for (let i = 0; i < 160; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.8 + 0.4,
+      alpha: Math.random(),
+      speed: Math.random() * 0.015 + 0.005
+    });
+  }
+
+  function launchConfetti(count = 120) {
+    const colors = ["#ff2a85", "#ffd700", "#00f2fe", "#a855f7", "#ffffff"];
+    for (let i = 0; i < count; i++) {
+      confetti.push({
+        x: w / 2,
+        y: h / 2,
+        vx: (Math.random() - 0.5) * 16,
+        vy: (Math.random() - 0.7) * 16,
+        size: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: 140
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => {
+      s.alpha += s.speed;
+      const a = 0.3 + Math.abs(Math.sin(s.alpha)) * 0.7;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 240, 255, ${a})`;
+      ctx.fill();
+    });
+
+    for (let i = confetti.length - 1; i >= 0; i--) {
+      const c = confetti[i];
+      c.x += c.vx;
+      c.y += c.vy;
+      c.vy += 0.25;
+      c.life--;
+      ctx.fillStyle = c.color;
+      ctx.fillRect(c.x, c.y, c.size, c.size);
+      if (c.life <= 0) confetti.splice(i, 1);
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Entrance & Web Audio Romantic Piano Synth
+  let audioCtx = null, isPlaying = false, melodyTimer = null;
+
+  function playNote(freq, duration) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }
+
+  function startMelody() {
+    // Happy Birthday gentle notes
+    const notes = [
+      261.63, 261.63, 293.66, 261.63, 349.23, 329.63,
+      261.63, 261.63, 293.66, 261.63, 392.00, 349.23,
+      261.63, 261.63, 523.25, 440.00, 349.23, 329.63, 293.66,
+      466.16, 466.16, 440.00, 349.23, 392.00, 349.23
+    ];
+    let idx = 0;
+    melodyTimer = setInterval(() => {
+      if (!isPlaying) return;
+      playNote(notes[idx % notes.length], 0.55);
+      idx++;
+    }, 520);
+  }
+
+  function toggleMusic() {
+    const btn = document.getElementById("musicToggle");
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (!isPlaying) {
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      isPlaying = true;
+      btn.textContent = "⏸ Pause Music";
+      if (!melodyTimer) startMelody();
+    } else {
+      isPlaying = false;
+      btn.textContent = "🎵 Play Music";
+    }
+  }
+
+  function enterWebsite() {
+    document.getElementById("entrance").classList.add("hidden");
+    launchConfetti(100);
+    if (!isPlaying) toggleMusic();
+  }
+
+  // Dual Timers: 16 Nov Birthday & Since 17 Oct 5:30 PM
+  function updateTimers() {
+    const now = new Date();
+    const year = now.getFullYear();
+
+    // Meeting Date: 17 October 5:30 PM
+    let metDate = new Date(year, 9, 17, 17, 30, 0);
+    if (now < metDate) {
+      metDate = new Date(year - 1, 9, 17, 17, 30, 0);
+    }
+    const diffMet = Math.max(0, now - metDate);
+    document.getElementById("mDays").textContent = String(Math.floor(diffMet / 86400000)).padStart(2, "0");
+    document.getElementById("mHours").textContent = String(Math.floor((diffMet / 3600000) % 24)).padStart(2, "0");
+    document.getElementById("mMins").textContent = String(Math.floor((diffMet / 60000) % 60)).padStart(2, "0");
+    document.getElementById("mSecs").textContent = String(Math.floor((diffMet / 1000) % 60)).padStart(2, "0");
+
+    // Birthday: 16 November
+    const bdayStart = new Date(year, 10, 16, 0, 0, 0);
+    const bdayEnd = new Date(year, 10, 17, 0, 0, 0);
+
+    if (now >= bdayStart && now < bdayEnd) {
+      document.getElementById("bdayLabel").textContent = "🎉 HAPPY BIRTHDAY TODAY • 16 NOVEMBER!";
+      document.getElementById("bdayBoxes").innerHTML = `<div class="t-box" style="width:100%;"><span style="color:#ffd700;">IT'S YOUR SPECIAL DAY! 🎂✨</span></div>`;
+    } else {
+      let nextBday = bdayStart;
+      if (now >= bdayEnd) nextBday = new Date(year + 1, 10, 16, 0, 0, 0);
+      const diffB = nextBday - now;
+      document.getElementById("bHours").textContent = String(Math.floor(diffB / 3600000)).padStart(2, "0");
+      document.getElementById("bMins").textContent = String(Math.floor((diffB / 60000) % 60)).padStart(2, "0");
+      document.getElementById("bSecs").textContent = String(Math.floor((diffB / 1000) % 60)).padStart(2, "0");
+    }
+  }
+  setInterval(updateTimers, 1000);
+  updateTimers();
+
+  // Cake Interaction
+  let candleBlown = false;
+  function blowCandle() {
+    if (!candleBlown) {
+      document.getElementById("candleFlame").classList.add("blown");
+      document.getElementById("wishStatus").textContent = "🎉 Happy Birthday! May every wish you made come true with Altamas! 🎉";
+      launchConfetti(160);
+      candleBlown = true;
+    } else {
+      document.getElementById("candleFlame").classList.remove("blown");
+      document.getElementById("wishStatus").textContent = "✨ Flame relit! Make another wish and click again ✨";
+      candleBlown = false;
+    }
+  }
+
+  // Dodge Button & Proposal Modal
+  function dodgeButton() {
+    const btn = document.getElementById("noBtn");
+    const x = (Math.random() - 0.5) * 260;
+    const y = (Math.random() - 0.5) * 120;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  function sayYes() {
+    launchConfetti(220);
+    document.getElementById("celebrateModal").classList.add("active");
+  }
+
+  function closeModal() {
+    document.getElementById("celebrateModal").classList.remove("active");
+    launchConfetti(120);
+  }
+</script>
+</body>
+</html>
